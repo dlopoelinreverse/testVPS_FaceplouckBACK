@@ -1,0 +1,29 @@
+
+    .user-mini-data {
+        background: $color-2;
+        border: 3px solid $color-1;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: .08s ease;
+        margin-bottom: 30px;
+        color: black;
+        .user-data {
+            display: flex;
+            align-items: center;
+            
+            
+            img{
+                width: 60px;
+                height: 60px;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+            h3 {
+                margin-left: 20px;
+                font-size: small;
+            }
+        }
+        &:hover {
+            transform: scale(1.05);
+    }
+}

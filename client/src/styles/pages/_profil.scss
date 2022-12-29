@@ -1,0 +1,52 @@
+ .profil{
+    height: 100%;
+     .profil-container {
+        //  width: 85%;
+         height: 100%;
+         margin: 0 auto;
+
+         .profil-header {
+          padding: 30px 30px;
+          width: 100%;
+          border-bottom: 2px solid $color-3;
+
+            .top-part {
+                // display: flex;
+                // flex-direction: column;
+                img {
+                    width: 150px;
+                    height: 150px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+                .profil-info {
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-between;
+                    padding: 10px 0;
+                        .data {
+                            display: flex;
+                            justify-content: space-between;
+                            width: 50%;
+                        }
+                }
+            }
+            .bottom-part {
+                width: 60%;
+                .selection {
+                    display: flex;
+                    justify-content: space-between;
+                    a{
+                        text-decoration: none;
+                        color: black;
+                        cursor: pointer;
+                    }
+                }
+            }
+         }
+         .profil-feed {
+            width: 95%;
+            margin: 0 auto;
+         }
+        }
+    }

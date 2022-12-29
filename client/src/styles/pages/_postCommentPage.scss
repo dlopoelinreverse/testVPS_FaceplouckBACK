@@ -1,0 +1,30 @@
+.post-comment {
+   
+    .post-card{
+        .comment-container {
+            margin-top: 15px;
+            width: 95%;
+            .comment-form-container {
+                form{
+                    display: flex;
+                    flex-direction: column;
+
+                    textarea{
+                        min-height: 150px;
+                        max-height: 300px;
+                        overflow: scroll;
+                        border: 1px solid $color-3;
+                        border-radius: 10px;
+                        padding: 10px;
+                        resize: none;
+                    }
+                    input {
+                        position: relative;
+                        width: 50%;
+                        right: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
