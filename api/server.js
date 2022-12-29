@@ -43,6 +43,6 @@ app.use("/api/conversation", conversationRoutes);
 app.use("api/uploadTest", uploadTestRoutes);
 
 // server ( à la toute fin)
-app.listen(process.env.PORT, () => {
+app.listen(8800, () => {
   console.log(`Listening on port ${process.env.PORT}`);
 });
