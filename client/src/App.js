@@ -34,14 +34,8 @@ const App = () => {
   return (
     <UidContext.Provider value={uid}>
       <div className="app">
-        {uid ? (
-          <>
-            <Routes />
-            <Navigation />
-          </>
-        ) : (
-          <Log signIn={false} signUp={true} />
-        )}
+        <Routes />
+        <Navigation />
       </div>
     </UidContext.Provider>
   );

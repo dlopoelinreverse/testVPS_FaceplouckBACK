@@ -14,7 +14,6 @@ const index = () => {
       <Route path="/" element={<Home />} />
       <Route path="profil">
         <Route path=":userId" element={<ProfilPage />} />
-        {/* <Route path="edit/:userId" element={<EditProfilPage />} /> */}
         <Route
           path="follows/:userId"
           element={<FollowsFollowersPage show="follows" />}
@@ -28,7 +27,6 @@ const index = () => {
       <Route path="post">
         <Route path="comments/:postId" element={<PostCommentPage />} />
       </Route>
-      {/* <Route path="/conversation" element={<Conversation />} /> */}
       <Route path="*" element={<Home />} />
     </Routes>
   );
