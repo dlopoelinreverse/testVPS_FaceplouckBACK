@@ -23,7 +23,7 @@ const app = express();
 //   methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
 //   preflightContinue: false,
 // };
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(cors());
 // traiter les req
 app.use(bodyParser.json());
