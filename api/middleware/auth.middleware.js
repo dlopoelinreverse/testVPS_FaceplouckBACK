@@ -10,10 +10,8 @@ module.exports.checkUser = (req, res, next) => {
         res.cookie("jwt", "", { maxAge: 1 });
         next();
       } else {
-        // console.log("decoded token : ", decodedToken);
         let user = await UserModel.findById(decodedToken.id);
         res.locals.user = user;
-        // console.log(res.locals.user);
         next();
       }
     });
@@ -28,7 +26,7 @@ module.exports.requireAuth = (req, res, next) => {
   if (token) {
     jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
       if (err) {
-        console.log(err); // sans next() ca s'arrete là
+        console.log(err);
       } else {
         console.log(decodedToken.id);
         next();

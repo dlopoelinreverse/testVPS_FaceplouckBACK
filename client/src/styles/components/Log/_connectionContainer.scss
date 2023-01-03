@@ -1,0 +1,119 @@
+.connection-section {
+    background-color: $color-1;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .connection-container {     
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+        // padding: 15% 0;
+
+        .selection {
+            display: flex;
+            justify-content: space-around;
+            width: 90%;
+            background-color: $color-5;
+            padding: 15px;
+            border-radius: 25px;
+
+            li {
+                background-color: $color-1;
+                padding: 10px;
+                border-radius: 50px;
+                cursor: pointer;
+            }
+            @media (min-width: 320px){
+                width: 90%;
+            }
+            @media (min-width: 425px){
+                width: 90%;
+            }
+            @media (min-width: 768px){
+                width: 85%;
+            }
+            @media (min-width: 992px){
+                width: 80%;
+            }
+        }
+        .sign-up-container {
+            width: 90%;
+            padding: 10px;
+            input[type=text], input[type=email], input[type=password] {
+                padding:10px 5px;
+                text-align: center;
+                border-radius: 15px;
+            }
+            .error {
+                height: 20px;
+                margin: 5px 0;
+                color: $color-4;
+                text-align: center;
+            }
+            form {
+                display: flex;
+                flex-direction: column;
+
+                .condition-container {
+                    display: flex;
+                    gap: 5px;
+                }
+            }
+            input[type=submit] {
+                width: 50%;
+                margin: 0 auto;
+                background-color: $color-3;
+                padding:10px 5px;
+                text-align: center;
+                border-radius: 15px;
+            }
+        }
+
+        .sign-in-container {
+            width: 90%;
+            padding: 10px;
+            input[type=text], input[type=email], input[type=password] {
+                padding:10px 5px;
+                text-align: center;
+                border-radius: 15px;
+            }
+            .error {
+                height: 20px;
+                margin: 5px 0;
+                color: $color-4;
+                text-align: center;
+            }
+            form {
+                display: flex;
+                flex-direction: column;
+
+                .condition-container {
+                    display: flex;
+                    gap: 5px;
+                }
+            }
+            input[type=submit] {
+                width: 50%;
+                margin: 0 auto;
+                background-color: $color-3;
+                padding:10px 5px;
+                text-align: center;
+                border-radius: 15px;
+            }
+        }
+        
+        // @media (min-width: 801px) {
+        //     width: 900px
+        // }
+        @media (min-width: 992px){
+            width: 40%;
+        }
+        
+       
+    }
+
+}

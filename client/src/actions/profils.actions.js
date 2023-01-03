@@ -8,7 +8,7 @@ export const getUserPosts = (userId) => {
       .get(`${process.env.REACT_APP_API_URL}api/post/userPosts/${userId}`)
       .then((res) => {
         dispatch({ type: GET_USER_POSTS, payload: res.data });
-        console.log("GetUserPosts : ", res.data);
+        // console.log("GetUserPosts : ", res.data);
       })
 
       .catch((err) => console.log("Action error | getUserPosts : " + err));

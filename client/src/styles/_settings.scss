@@ -34,11 +34,12 @@
     outline: none;
     border: none;
     text-decoration: none;
+    font-family: $font-2;
     
     
   
     &::selection {
-      background: $color-1;
+      background: $color-3;
     }
   }
   body {
@@ -73,10 +74,32 @@
  .app {
    
    .page {
-     // width: 98vw;
-
      overflow-x: hidden;
      padding-bottom: 70px;
+     border-left: 3px solid $color-4;
+     border-right: 3px solid $color-4;
+
+    
+    @media (min-width: 768px){
+      width: 80%;
+      margin: 0 auto;
+    }
+    @media (min-width: 1024px){
+      width: 80%;
+      margin: 0 auto;
+    }
+    @media (min-width: 1440px){
+      width: 70%;
+      margin: 0 auto;
+    }
+    @media (min-width: 1865px){
+      width: 60%;
+      margin: 0 auto;
+    }
+    @media (min-width: 2560px){
+      width: 60%;
+      margin: 0 auto;
+    }
      
      
      

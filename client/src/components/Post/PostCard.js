@@ -1,18 +1,14 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { dateParser, isEmpty, removeDotOnPics } from "../../utils/Utils";
-import UserData from "../User/UserData";
-import Comments from "./Comments";
 import LikeButton from "./LikeButton";
 // import { setProfilId } from "../../actions/profil.actions";
 import UserMiniData from "../User/UserMiniData";
 import { useContext } from "react";
 import { UidContext } from "../AppContext";
 import { deletePost, updatePost } from "../../actions/posts.actions";
-import CommentCard from "./Comments/CommentCard";
-import CommentForm from "./Comments/CommentForm";
 import { useEffect } from "react";
 import CommentContainer from "./Comments/CommentContainer";
 

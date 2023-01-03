@@ -23,7 +23,7 @@ const Log = ({ signIn, signUp }) => {
   };
 
   return (
-    <div className="connection page">
+    <div className="connection-section">
       <div className="connection-container">
         <ul className="selection">
           <li
@@ -40,13 +40,13 @@ const Log = ({ signIn, signUp }) => {
           >
             Se connecter
           </li>
-          <li id="tester" onClick={handleModals}>
-            Testeur
-          </li>
+          {/* <li id="tester" onClick={handleModals}>
+          Testeur
+        </li> */}
         </ul>
         {signUpModal && <SignUpForm />}
         {signInModal && <SignInForm />}
-        {testerModal && <TesterLog />}
+        {/* {testerModal && <TesterLog />} */}
       </div>
     </div>
   );

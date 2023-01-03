@@ -2,9 +2,9 @@ const router = require("express").Router();
 const authController = require("../controllers/auth.controller");
 const userController = require("../controllers/user.controller");
 const uploadController = require("../controllers/upload.controller");
-// const multer = require("../middleware/multer"); // fs
-// const multer = require("multer"); // fs
-// const upload = multer(); // fs
+// const multer = require("../middleware/multer");
+// const multer = require("multer");
+// const upload = multer();
 // const multer = require("../middleware/multer-config");
 const fileUpload = require("express-fileupload");
 const filesPayloadExists = require("../middleware/fileUploadMD/filesPayloadExists");
@@ -25,7 +25,7 @@ router.patch("/follow/:id", userController.follow);
 router.patch("/unfollow/:id", userController.unfollow);
 
 // upload
-// router.post("/upload", upload.single("file"), uploadController.uploadProfil); // FS
+// router.post("/upload", upload.single("file"), uploadController.uploadProfil);
 router.post(
   "/upload",
   fileUpload({ createParentPath: true }),

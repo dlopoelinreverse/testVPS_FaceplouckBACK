@@ -6,7 +6,7 @@ import {
   createPostPicture,
   getPosts,
 } from "../../actions/posts.actions";
-import { isEmpty } from "../../utils/Utils";
+import { isEmpty, removeDotOnPics } from "../../utils/Utils";
 import { UidContext } from "../AppContext";
 
 const CreateFormPost = () => {
@@ -84,7 +84,7 @@ const CreateFormPost = () => {
             <div className="left-part">
               <Link to={`/profil/${clientData._id}`} state={{ from: origin }}>
                 <div className="user-picture">
-                  <img src={clientData.picture} alt="" />
+                  <img src={removeDotOnPics(clientData.picture)} alt="" />
                 </div>
               </Link>
             </div>
@@ -134,7 +134,7 @@ const CreateFormPost = () => {
               <div className="icon">
                 {isEmpty(video) && (
                   <>
-                    <img src="./img/icons/picture.svg" alt="img" />
+                    <img src="/img/icons/images-regular.svg" alt="img" />
                     <input
                       type="file"
                       id="file-upload"

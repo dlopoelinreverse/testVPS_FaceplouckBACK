@@ -25,7 +25,7 @@ const Profil = ({ userId, usersData, profilsPosts }) => {
   }, [userId, usersData, profilsPosts]);
 
   // console.log(profilsPosts);
-  // console.log(profilPosts);
+  console.log(profilPosts);
 
   return (
     <div className="profil-container">

@@ -1,18 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getUserPosts } from "../actions/profils.actions";
 import Profil from "../components/Profil/Profil";
 import { isEmpty } from "../utils/Utils";
 
 const ProfilPage = () => {
   const { userId } = useParams();
-  // const location = useLocation();
-  // const { from } = location.state;
-  // const origin = from;
-
-  console.log(origin);
 
   const usersData = useSelector((state) => state.usersReducer);
   const profilsPosts = useSelector(
@@ -29,12 +24,7 @@ const ProfilPage = () => {
     }
   }, [profilsPosts]);
 
-  // console.log(
-  //   "ProfilPosts : ",
-  //   profilsPosts
-  //     .filter((profilPosts) => profilPosts.userId === userId)
-  //     .map((profilPosts) => profilPosts.posts)
-  // );
+  console.log(profilsPosts);
 
   return (
     <div className="profil page">

@@ -3,9 +3,8 @@
 @import "../components/showPostComments";
 
 .main{
-  // width: 85%;
   margin: 0 auto;
-  border-left: 3px solid $color-4;
+
 
   
 
@@ -19,7 +18,7 @@
 
         background: $color-1;
 
-        border-right: 3px solid $color-4;
+        // border-right: 3px solid $color-4;
         border-bottom: 2px solid $color-4;
 
         .header {
@@ -214,7 +213,7 @@
             gap: 10px;
             // width: 80%;
             padding-top: 20px;
-            border-right: 3px solid $color-4;
+            // border-right: 3px solid $color-4;
         }
         
        

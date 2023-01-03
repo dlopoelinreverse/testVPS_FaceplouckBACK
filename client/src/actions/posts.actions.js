@@ -49,6 +49,7 @@ export const createPost = (posterId, message, video) => {
     })
       .then((res) => {
         dispatch({ type: GET_POST_ERRORS, payload: "" });
+        dispatch({ type: CREATE_POST, payload: res.data });
       })
       .catch((err) => console.log("Action error | createPost : " + err));
   };

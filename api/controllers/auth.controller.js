@@ -11,14 +11,14 @@ const createToken = (id) => {
 };
 
 module.exports.signUp = async (req, res) => {
-  const { pseudo, email, password } = req.body; // déstructurer req.body.pseudo....
+  const { pseudo, email, password } = req.body;
 
   try {
-    const user = await UserModel.create({ pseudo, email, password }); // pareil icic, pseudo: pseudo....
+    const user = await UserModel.create({ pseudo, email, password });
+
     res.status(201).json({ user: user._id });
   } catch (err) {
     const errors = signUpErrors(err);
-    // res.status(200).send({ err });
     res.status(200).send({ errors });
   }
 };
@@ -27,10 +27,10 @@ module.exports.signIn = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await UserModel.login(email, password); // on récupère les info que l'on stock dans user
+    const user = await UserModel.login(email, password);
 
-    const token = createToken(user._id); // dans le token il y aura l'id du user, la clef secrète et des infos de JWT
-    res.cookie("jwt", token, { httpOnly: true, maxAge }); // retourner la res en la rangeant dans les cookies
+    const token = createToken(user._id);
+    res.cookie("jwt", token, { httpOnly: true, maxAge });
     res.status(200).send({ user: user._id });
   } catch (err) {
     const errors = signInErrors(err);
@@ -40,5 +40,5 @@ module.exports.signIn = async (req, res) => {
 
 module.exports.logout = (req, res) => {
   res.cookie("jwt", "", { maxAge: 1 });
-  res.redirect("/"); // pour faire aboutir la requete, redirection
+  res.redirect("/");
 };

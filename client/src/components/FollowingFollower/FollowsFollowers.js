@@ -11,7 +11,6 @@ const FollowsFollowers = ({ userId, usersData, show }) => {
     setUserData(usersData.filter((user) => user._id === userId)[0]);
   }, [userId, usersData]);
 
-  console.log(userData);
   return (
     <div className="follows-follwers-container">
       {!isEmpty(userData) && (

@@ -1,3 +1,4 @@
+import { CREATE_POST } from "../actions/posts.actions";
 import { GET_USER_POSTS } from "../actions/profils.actions";
 
 const initialState = { profilsPosts: [], profilsData: [] };
@@ -25,6 +26,17 @@ export default function postsReducer(state = initialState, action) {
               } else return profilPosts;
             })
           : [...state.profilsPosts, action.payload],
+      };
+    case CREATE_POST:
+      return {
+        ...state,
+        profilPosts: state.profilsPosts.map((profilPosts) => {
+          if (profilPosts.userId === action.payload.posterId) {
+            if (!profilPosts.posts.includes(action.payload)) {
+              return [...state.profilsPosts, action.payload];
+            } else return state.profilsPosts;
+          } else return profilPosts;
+        }),
       };
 
     default:

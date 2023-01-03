@@ -1,0 +1,59 @@
+.follows-follwers-container {
+    .selection {
+        margin: 20px 0;
+        display: flex;
+        justify-content: space-around;
+        background-color: $color-3;
+        padding: 20px 0;
+
+        li {
+            background-color: $color-2;
+            padding: 15px;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+    }
+    .follows-followers-users-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        li {
+          
+            border-top: 2px solid $color-3;
+            border-bottom: 2px solid $color-3;
+            .user-data {
+                padding: 0 5px;
+                display: flex;
+                justify-content: space-evenly;
+                @media (min-width: 320px){
+                    width: 100%;
+                }
+                @media (min-width: 425px){
+                    width: 80%;
+                    margin: 0 auto;
+                }
+                @media (min-width: 768px){
+                    width: 60%;
+                    margin: 0 auto;
+                }
+                @media (min-width: 992px){
+                    width: 60%;
+                    margin: 0 auto;
+                }
+                a {
+                    width: 70%;
+                    .profil-data {
+                        display: flex;
+                        align-items: center;
+                        color: black;                        
+                    }
+                }
+                span {
+                    width: 30%;
+                    
+                }
+            }
+        }
+    }
+}

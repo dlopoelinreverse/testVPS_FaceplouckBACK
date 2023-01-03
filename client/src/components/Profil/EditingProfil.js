@@ -47,52 +47,54 @@ const EditingProfil = () => {
     }
   };
   return (
-    <div className="edit-container">
-      <div className="pseudo">
-        {editPseudo ? (
-          <>
-            <textarea
-              defaultValue={clientData.pseudo}
-              onChange={(e) => setNewPseudo(e.target.value)}
+    <div className="edit-profil">
+      <div className="edit-profil-container">
+        <div className="pseudo">
+          {editPseudo ? (
+            <>
+              <textarea
+                defaultValue={clientData.pseudo}
+                onChange={(e) => setNewPseudo(e.target.value)}
+              />
+              <button onClick={handleEditUpdate}>valider</button>
+            </>
+          ) : (
+            <p>{clientData.pseudo}</p>
+          )}
+          <span className="btn" onClick={() => setEditPseudo(!editPseudo)}>
+            <img src="/img/icons/edit-pencil.svg" alt="edit" />
+          </span>
+        </div>
+        <div className="bio">
+          {editBio ? (
+            <>
+              <textarea
+                defaultValue={clientData.bio}
+                onChange={(e) => setNewBio(e.target.value)}
+              />
+              <button onClick={handleEditUpdate}>valider</button>
+            </>
+          ) : (
+            <p>{clientData.bio}</p>
+          )}
+          <span className="btn" onClick={() => setEditBio(!editBio)}>
+            <img src="/img/icons/edit-pencil.svg" alt="edit" />
+          </span>
+        </div>
+        <div className="profil-picture">
+          <form onSubmit={handleEditUpdate} className="picture">
+            <label htmlFor="file">Changer d'image</label>
+            <input
+              type="file"
+              id="file"
+              name="file"
+              accept=".jpg, .jpeg, .png"
+              onChange={(e) => setFile(e.target.files[0])}
             />
-            <button onClick={handleEditUpdate}>valider</button>
-          </>
-        ) : (
-          <p>{clientData.pseudo}</p>
-        )}
-        <span className="btn" onClick={() => setEditPseudo(!editPseudo)}>
-          <img src="/img/icons/edit-pencil.svg" alt="edit" />
-        </span>
-      </div>
-      <div className="bio">
-        {editBio ? (
-          <>
-            <textarea
-              defaultValue={clientData.bio}
-              onChange={(e) => setNewBio(e.target.value)}
-            />
-            <button onClick={handleEditUpdate}>valider</button>
-          </>
-        ) : (
-          <p>{clientData.bio}</p>
-        )}
-        <span className="btn" onClick={() => setEditBio(!editBio)}>
-          <img src="/img/icons/edit-pencil.svg" alt="edit" />
-        </span>
-      </div>
-      <div className="profil-picture">
-        <form onSubmit={handleEditUpdate} className="picture">
-          <label htmlFor="file">Changer d'image</label>
-          <input
-            type="file"
-            id="file"
-            name="file"
-            accept=".jpg, .jpeg, .png"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-          <br />
-          <input type="submit" value="Changer" />
-        </form>
+            <br />
+            <input type="submit" value="Changer" />
+          </form>
+        </div>
       </div>
     </div>
   );

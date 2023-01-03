@@ -1,20 +1,24 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import UserMiniData from "../../User/UserMiniData";
-import EditDeleteComment from "./EditDeleteComment";
+import CommentContent from "./CommentContent";
 
 const CommentCard = ({ comment, post }) => {
-  const posterData = useSelector(
+  const commenterData = useSelector(
     (state) =>
-      state.usersReducer.filter((user) => user._id === post.posterId)[0]
+      state.usersReducer.filter((user) => user._id === comment.commenterId)[0]
   );
+
   return (
-    <div className="comment-card">
+    <li className="comment-card">
       {/* <UserData userId={comment.commenterId} /> */}
-      <UserMiniData posterData={posterData} />
-      <p>{comment.text}</p>
-      <EditDeleteComment comment={comment} postId={post._id} />
-    </div>
+      <div className="user-data">
+        <UserMiniData posterData={commenterData} />
+      </div>
+      <div className="comment-content">
+        <CommentContent comment={comment} postId={post._id} />
+      </div>
+    </li>
   );
 };
 

@@ -12,16 +12,14 @@ const FollowsFollowersContainer = ({ userData, show }) => {
     else if (show === "followers") setFollowsFollowersIds(userData.followers);
   }, [show, userData]);
   return (
-    <div>
-      <ul>
-        {!isEmpty(followsFollowersIds) &&
-          followsFollowersIds.map((id) => (
-            <li key={id}>
-              <UserData userId={id} />
-            </li>
-          ))}
-      </ul>
-    </div>
+    <ul className="follows-followers-users-container">
+      {!isEmpty(followsFollowersIds) &&
+        followsFollowersIds.map((id) => (
+          <li key={id}>
+            <UserData userId={id} />
+          </li>
+        ))}
+    </ul>
   );
 };
 

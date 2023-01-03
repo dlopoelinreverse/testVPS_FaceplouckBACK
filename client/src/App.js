@@ -34,7 +34,7 @@ const App = () => {
   return (
     <UidContext.Provider value={uid}>
       <div className="app">
-        <Routes />
+        <Routes uid={uid} />
         <Navigation />
       </div>
     </UidContext.Provider>

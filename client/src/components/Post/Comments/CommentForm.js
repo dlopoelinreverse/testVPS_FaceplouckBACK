@@ -12,8 +12,7 @@ const CommentForm = ({ postId }) => {
   );
   const dispatch = useDispatch();
   const commentText = useRef();
-  const handleComment = (e) => {
-    e.preventDefault();
+  const handleComment = () => {
     if (commentText.current.value) {
       dispatch(
         addComment(
@@ -29,10 +28,8 @@ const CommentForm = ({ postId }) => {
 
   return (
     <div className="comment-form-container">
-      <form onSubmit={handleComment}>
-        <textarea name="comment" ref={commentText} />
-        <input type="submit" value="commenter" />
-      </form>
+      <textarea ref={commentText} />
+      <button onClick={handleComment}>Commenter</button>
     </div>
   );
 };

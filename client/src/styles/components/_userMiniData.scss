@@ -7,6 +7,19 @@
         transition: .08s ease;
         margin-bottom: 30px;
         color: black;
+        
+        @media (min-width: 320px){
+            width: 160px;
+        }
+        @media (min-width: 425px){
+            width: 200px;
+        }
+        @media (min-width: 768px){
+            width: 200px;
+        }
+        @media (min-width: 992px){
+            width: 200px;
+        }
         .user-data {
             display: flex;
             align-items: center;

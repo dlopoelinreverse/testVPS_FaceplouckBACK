@@ -1,0 +1,52 @@
+.comment-card {
+    padding: 10px;
+    border: 1px solid $color-4;
+    border-radius: 10px;
+
+    .comment-content {
+        width: 95%;
+        margin: 0 auto;
+
+        .editable-comment {
+            width: 95%;
+        display: flex;
+        align-items: center;
+        textarea {
+            width: 95%;
+            resize: none;
+            border: 1px solid black;
+            min-height: 100px;
+        }
+        .edition-btn {
+             margin: 0 10px;
+        }
+        .comment {
+            width: 90%;
+            p{
+                width: 95%;
+                overflow-wrap: break-word;
+                padding-bottom: 10px;
+            }
+        }
+        .edit-btn {
+            width: 5%;
+           
+        }
+        .delete-btn {
+            width: 5%;
+        }
+        }
+        .comment {
+            .content {
+                min-height: 50px;
+            }
+        }
+        span {
+            img {
+                width: 15px;
+                height: auto;
+            }
+        }
+        
+    }
+}

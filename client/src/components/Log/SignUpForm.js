@@ -93,14 +93,16 @@ const SignUpForm = () => {
             ref={inputControlPassword}
           />
           <div className="control-password error"></div>
-          <input type="checkbox" id="terms" />
-          <label htmlFor="terms">
-            J'accepte les{" "}
-            <a href="/" target="_blank" rel="noopener noreferrer">
-              {" "}
-              conditions générales
-            </a>
-          </label>
+          <div className="condition-container">
+            <input type="checkbox" id="terms" />
+            <label htmlFor="terms">
+              J'accepte les{" "}
+              <a href="/" target="_blank" rel="noopener noreferrer">
+                {" "}
+                conditions générales
+              </a>
+            </label>
+          </div>
           <div className="terms error"></div>
           <input type="submit" value="S'inscrire" />
         </form>

@@ -13,6 +13,7 @@ const SignInForm = () => {
       method: "post",
       url: `${process.env.REACT_APP_API_URL}api/user/login`,
       withCredentials: true,
+      // credentials: "include",
       data: {
         email: inputEmail.current.value,
         password: inputPassword.current.value,
@@ -40,9 +41,7 @@ const SignInForm = () => {
           placeholder="Votre email"
           ref={inputEmail}
         />
-        <div className="email error">
-          <p>{}</p>
-        </div>
+        <div className="email error"></div>
         {/* <label>Mot de passe</label> */}
         <input
           type="password"
