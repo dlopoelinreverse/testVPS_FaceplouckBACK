@@ -57,13 +57,16 @@ const EditingProfil = () => {
                 onChange={(e) => setNewPseudo(e.target.value)}
               />
               <button onClick={handleEditUpdate}>valider</button>
+              <button onClick={() => setEditPseudo(false)}>X</button>
             </>
           ) : (
-            <p>{clientData.pseudo}</p>
+            <>
+              <p>{clientData.pseudo}</p>
+              <span className="btn" onClick={() => setEditPseudo(!editPseudo)}>
+                <img src="/img/icons/edit-pencil.svg" alt="edit" />
+              </span>
+            </>
           )}
-          <span className="btn" onClick={() => setEditPseudo(!editPseudo)}>
-            <img src="/img/icons/edit-pencil.svg" alt="edit" />
-          </span>
         </div>
         <div className="bio">
           {editBio ? (
@@ -73,13 +76,16 @@ const EditingProfil = () => {
                 onChange={(e) => setNewBio(e.target.value)}
               />
               <button onClick={handleEditUpdate}>valider</button>
+              <button onClick={() => setEditBio(false)}>X</button>
             </>
           ) : (
-            <p>{clientData.bio}</p>
+            <>
+              <p>{clientData.bio}</p>
+              <span className="btn" onClick={() => setEditBio(!editBio)}>
+                <img src="/img/icons/edit-pencil.svg" alt="edit" />
+              </span>
+            </>
           )}
-          <span className="btn" onClick={() => setEditBio(!editBio)}>
-            <img src="/img/icons/edit-pencil.svg" alt="edit" />
-          </span>
         </div>
         <div className="profil-picture">
           <form onSubmit={handleEditUpdate} className="picture">
@@ -88,7 +94,7 @@ const EditingProfil = () => {
               type="file"
               id="file"
               name="file"
-              accept=".jpg, .jpeg, .png"
+              accept=".jpg, .jpeg, .png, .gif"
               onChange={(e) => setFile(e.target.files[0])}
             />
             <br />

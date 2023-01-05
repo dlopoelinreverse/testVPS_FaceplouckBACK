@@ -6,6 +6,7 @@ const pipeline = promisify(require("stream").pipeline);
 
 module.exports.uploadProfil = async (req, res) => {
   // multer envoi un req.file à exploiter
+
   try {
     if (
       req.file.detectedMimeType !== "image/jpg" &&
@@ -25,7 +26,7 @@ module.exports.uploadProfil = async (req, res) => {
   await pipeline(
     req.file.stream,
     fs.createWriteStream(
-      `${_dirname}/../client/public/uploads/profil/${fileName}`
+      `${__dirname}/../client/public/uploads/profil/${fileName}`
     )
   );
 };
