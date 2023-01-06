@@ -19,7 +19,7 @@ const ProfilHeader = ({ profilData }) => {
           <div className="profil-header">
             <div className="top-part">
               <img
-                src={removeDotOnPics(profilData.picture)}
+                src={`${process.env.REACT_APP_API_URL}${profilData.picture}`}
                 alt={`Profil de ${profilData.pseudo}`}
               />
               <div className="profil-info">

@@ -36,10 +36,10 @@ const EditingProfil = () => {
         const data = new FormData();
         data.append("userName", clientData.pseudo);
         data.append("id", uid);
-        data.append("file", file);
+        data.append("image", file);
 
         dispatch(uploadClientPicture(data, uid));
-        // window.stop();
+        window.location.reload();
       }
     } else {
       setEditPseudo(false);

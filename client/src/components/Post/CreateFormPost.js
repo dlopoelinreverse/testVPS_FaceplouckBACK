@@ -27,7 +27,7 @@ const CreateFormPost = () => {
     if (message || postPicture || video) {
       const data = new FormData();
       if (file) {
-        data.append("file", file);
+        data.append("image", file);
         data.append("posterId", clientData._id);
         data.append("message", message);
         data.append("video", video);
@@ -84,7 +84,10 @@ const CreateFormPost = () => {
             <div className="left-part">
               <Link to={`/profil/${clientData._id}`} state={{ from: origin }}>
                 <div className="user-picture">
-                  <img src={removeDotOnPics(clientData.picture)} alt="" />
+                  <img
+                    src={`${process.env.REACT_APP_API_URL}${clientData.picture}`}
+                    alt=""
+                  />
                 </div>
               </Link>
             </div>
@@ -100,7 +103,10 @@ const CreateFormPost = () => {
             {message || postPicture || video.length > 20 ? (
               <div className="post-preview">
                 <div className="post-header">
-                  <img src={clientData.picture} alt="user illustration" />
+                  <img
+                    src={`${process.env.REACT_APP_API_URL}${clientData.picture}`}
+                    alt="user illustration"
+                  />
                   <div className="pseudo">
                     <h3>{clientData.pseudo}</h3>
                   </div>
@@ -139,7 +145,7 @@ const CreateFormPost = () => {
                       type="file"
                       id="file-upload"
                       name="file"
-                      accept=".jpg, .jpeg, .png"
+                      accept=".jpg, .jpeg, .png, .gif"
                       onChange={(e) => handlePicture(e)}
                     />
                   </>

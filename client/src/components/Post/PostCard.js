@@ -13,8 +13,6 @@ import { useEffect } from "react";
 import CommentContainer from "./Comments/CommentContainer";
 
 const PostCard = ({ postId, postsData, type }) => {
-  const origin = window.location.pathname;
-
   const usersData = useSelector((state) => state.usersReducer);
   // const postsData = useSelector((state) => state.postsReducer);
   const [post, setPost] = useState();
@@ -57,7 +55,6 @@ const PostCard = ({ postId, postsData, type }) => {
                       key={index}
                       posterData={posterData}
                       fromType={type}
-                      origin={origin}
                     />
                   ))}
               {/* ))} */}
@@ -110,7 +107,8 @@ const PostCard = ({ postId, postsData, type }) => {
               //     </>
               //   ) : (
               <img
-                src={removeDotOnPics(post.picture)}
+                // src={removeDotOnPics(post.picture)}
+                src={`${process.env.REACT_APP_API_URL}${post.picture}`}
                 alt="Illustration du post"
               />
               //   )}

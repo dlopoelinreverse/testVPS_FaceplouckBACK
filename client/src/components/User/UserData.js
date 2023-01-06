@@ -19,7 +19,10 @@ const UserData = ({ userId, type }) => {
             <div className="profil-data">
               <div className="img-container">
                 <img
-                  src={userData.picture && removeDotOnPics(userData.picture)}
+                  src={
+                    userData.picture &&
+                    `${process.env.REACT_APP_API_URL}${userData.picture}`
+                  }
                   alt=""
                 />
               </div>

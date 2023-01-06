@@ -44,7 +44,7 @@ export const uploadClientPicture = (data, clientId) => {
   return (dispatch) => {
     console.log(data, clientId);
     return axios
-      .post(`${process.env.REACT_APP_API_URL}api/user/upload`, data)
+      .put(`${process.env.REACT_APP_API_URL}api/user/update/${clientId}`, data)
       .then((res) => {
         // return axios
         //   .get(`${process.env.REACT_APP_API_URL}api/user/${id}`)

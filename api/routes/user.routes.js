@@ -1,16 +1,12 @@
 const router = require("express").Router();
 const authController = require("../controllers/auth.controller");
 const userController = require("../controllers/user.controller");
-const uploadControllerFS = require("../controllers/upload.controllerFS");
 
-// const multer = require("../middleware/multer");
-const multer = require("multer");
-const upload = multer();
-// const multer = require("../middleware/multer-config");
-// const fileUpload = require("express-fileupload");
-// const filesPayloadExists = require("../middleware/fileUploadMD/filesPayloadExists");
-// const filesSizeLimiter = require("../middleware/fileUploadMD/fileSizeLimiter");
-// const fileExtLimiter = require("../middleware/fileUploadMD/fileExtLimiter");
+const fileUpload = require("express-fileupload");
+const filesPayloadExists = require("../middleware/fileUploadMD/filesPayloadExists");
+const fileExtLimiter = require("../middleware/fileUploadMD/fileExtLimiter");
+const fileSizeLimiter = require("../middleware/fileUploadMD/fileSizeLimiter");
+const multerController = require("../controllers/multer.controller");
 
 // auth
 router.post("/register", authController.signUp);
@@ -24,16 +20,13 @@ router.put("/:id", userController.updateUser);
 router.delete("/:id", userController.deleteUser);
 router.patch("/follow/:id", userController.follow);
 router.patch("/unfollow/:id", userController.unfollow);
-
-// upload
-router.post("/upload", upload.single("file"), uploadControllerFS.uploadProfil);
-// router.post(
-//   "/upload",
-//   fileUpload({ createParentPath: true }),
-//   filesPayloadExists,
-//   fileExtLimiter([".png", ".jpg", ".jpeg", ".JPG", ".PNG"]),
-//   filesSizeLimiter,
-//   uploadController.uploadProfil
-// );
+router.put(
+  "/update/:id",
+  fileUpload({ createParentPath: true }),
+  filesPayloadExists,
+  fileExtLimiter([".png", ".jpg", ".jpeg", ".gif"]),
+  fileSizeLimiter(5), // MB
+  multerController.userPicture
+);
 
 module.exports = router;

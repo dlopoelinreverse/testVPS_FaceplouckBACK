@@ -1,7 +1,5 @@
-const path = require("path");
 const PostModel = require("../models/post.model");
 const UserModel = require("../models/user.model");
-const { handleTypoReqBodyComment } = require("../utils/errors");
 const ObjectID = require("mongoose").Types.ObjectId;
 
 module.exports.getAllPosts = (req, res) => {
@@ -72,41 +70,41 @@ module.exports.createPost = async (req, res) => {
   }
 };
 
-module.exports.createPostPicture = async (req, res) => {
-  const file = req.files.file;
-  console.log(req.files);
+// module.exports.createPostPicture = async (req, res) => {
+//   const file = req.files.file;
+//   console.log(req.files);
 
-  console.log(req.body);
-  if (!ObjectID.isValid(req.body.posterId))
-    return res
-      .status(400)
-      .send("ID unknown : " + req.body.posterId + " cannot create post.");
-  const filepath = path.join(
-    __dirname,
-    "/../client/public/uploads/posts/",
-    `${req.body.posterId + Date.now()}.jpg`
-  );
+//   console.log(req.body);
+//   if (!ObjectID.isValid(req.body.posterId))
+//     return res
+//       .status(400)
+//       .send("ID unknown : " + req.body.posterId + " cannot create post.");
+//   const filepath = path.join(
+//     __dirname,
+//     "/../client/public/uploads/posts/",
+//     `${req.body.posterId + Date.now()}.jpg`
+//   );
 
-  file.mv(filepath, (err) => {
-    if (err) return res.status(500).send({ status: "error", message: err });
-  });
-  const picturePath = `./uploads/posts/${req.body.posterId + Date.now()}.jpg`;
+//   file.mv(filepath, (err) => {
+//     if (err) return res.status(500).send({ status: "error", message: err });
+//   });
+//   const picturePath = `./uploads/posts/${req.body.posterId + Date.now()}.jpg`;
 
-  const newPost = new PostModel({
-    posterId: req.body.posterId,
-    message: req.body.message,
-    picture: picturePath,
-    video: req.body.video,
-    likers: [],
-    comments: [],
-  });
-  try {
-    const post = await newPost.save();
-    return res.status(201).send(post);
-  } catch (err) {
-    return res.status(400).send(err);
-  }
-};
+//   const newPost = new PostModel({
+//     posterId: req.body.posterId,
+//     message: req.body.message,
+//     picture: picturePath,
+//     video: req.body.video,
+//     likers: [],
+//     comments: [],
+//   });
+//   try {
+//     const post = await newPost.save();
+//     return res.status(201).send(post);
+//   } catch (err) {
+//     return res.status(400).send(err);
+//   }
+// };
 
 module.exports.updatePost = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
