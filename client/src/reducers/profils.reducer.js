@@ -1,4 +1,4 @@
-import { CREATE_POST } from "../actions/posts.actions";
+import { CREATE_POST, LIKE_POST } from "../actions/posts.actions";
 import { GET_USER_POSTS } from "../actions/profils.actions";
 
 const initialState = { profilsPosts: [], profilsData: [] };
@@ -38,6 +38,23 @@ export default function postsReducer(state = initialState, action) {
           } else return profilPosts;
         }),
       };
+    // case LIKE_POST:
+    //   console.log(action.payload.posterId);
+    //   return {
+    //     ...state,
+    //     profilsPosts: state.profilsPosts.map((profilPost) => {
+    //       if (profilPost.userId === action.payload.posterId) {
+    //         profilPost.posts.map((post) => {
+    //           if (post._id === action.payload.postId) {
+    //             return {
+    //               ...post,
+    //               likers: [action.payload.userId, ...post.likers],
+    //             };
+    //           } else return post;
+    //         });
+    //       } else return profilPost;
+    //     }),
+    //   };
 
     default:
       return state;

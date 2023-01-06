@@ -70,7 +70,7 @@ export const createPostPicture = (data) => {
   };
 };
 
-export const likePost = (postId, userId) => {
+export const likePost = (postId, userId, posterId) => {
   return (dispatch) => {
     return axios({
       method: "patch",
@@ -78,13 +78,13 @@ export const likePost = (postId, userId) => {
       data: { likerId: userId },
     })
       .then(() => {
-        dispatch({ type: LIKE_POST, payload: { postId, userId } });
+        dispatch({ type: LIKE_POST, payload: { postId, userId, posterId } });
       })
       .catch((err) => console.log(err));
   };
 };
 
-export const unlikePost = (postId, userId) => {
+export const unlikePost = (postId, userId, posterId) => {
   return (dispatch) => {
     return axios({
       method: "patch",
@@ -92,7 +92,7 @@ export const unlikePost = (postId, userId) => {
       data: { likerId: userId },
     })
       .then(() => {
-        dispatch({ type: UNLIKE_POST, payload: { postId, userId } });
+        dispatch({ type: UNLIKE_POST, payload: { postId, userId, posterId } });
       })
       .catch((err) => console.log(err));
   };
