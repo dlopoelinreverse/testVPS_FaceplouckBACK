@@ -64,6 +64,7 @@ export const createPostPicture = (data) => {
           dispatch({ type: GET_POST_ERRORS, payload: res.data.errors });
         } else {
           dispatch({ type: GET_POST_ERRORS, payload: "" });
+          dispatch({ type: CREATE_POST_PICTURE, payload: res.data });
         }
       })
       .catch((err) => console.log("Action error | createPostPicture : " + err));
@@ -98,28 +99,28 @@ export const unlikePost = (postId, userId, posterId) => {
   };
 };
 
-export const updatePost = (postId, message) => {
+export const updatePost = (post, message) => {
   return (dispatch) => {
     return axios({
       method: "put",
-      url: `${process.env.REACT_APP_API_URL}api/post/${postId}`,
+      url: `${process.env.REACT_APP_API_URL}api/post/${post._id}`,
       data: { message },
     })
       .then(() => {
-        dispatch({ type: UPDATE_POST, payload: { postId, message } });
+        dispatch({ type: UPDATE_POST, payload: { post, message } });
       })
       .catch((err) => console.log(err));
   };
 };
 
-export const deletePost = (postId) => {
+export const deletePost = (post) => {
   return (dispatch) => {
     return axios({
       method: "delete",
-      url: `${process.env.REACT_APP_API_URL}api/post/${postId}`,
+      url: `${process.env.REACT_APP_API_URL}api/post/${post._id}`,
     })
       .then(() => {
-        dispatch({ type: DELETE_POST, payload: { postId } });
+        dispatch({ type: DELETE_POST, payload: { post } });
       })
       .catch((err) => console.log(err));
   };

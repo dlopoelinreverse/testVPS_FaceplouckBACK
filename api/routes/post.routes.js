@@ -5,7 +5,7 @@ const fileUpload = require("express-fileupload");
 const filesPayloadExists = require("../middleware/fileUploadMD/filesPayloadExists");
 const fileExtLimiter = require("../middleware/fileUploadMD/fileExtLimiter");
 const fileSizeLimiter = require("../middleware/fileUploadMD/fileSizeLimiter");
-const multerController = require("../controllers/multer.controller");
+const uploadController = require("../controllers/upload.controller");
 
 router.get("/", postController.getAllPosts);
 router.get("/:postId", postController.getPost);
@@ -17,7 +17,7 @@ router.post(
   filesPayloadExists,
   fileExtLimiter([".png", ".jpg", ".jpeg", ".gif"]),
   fileSizeLimiter(5), // MB
-  multerController.createPostPicture
+  uploadController.createPostPicture
 );
 
 router.put("/:id", postController.updatePost);

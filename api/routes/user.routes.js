@@ -6,7 +6,7 @@ const fileUpload = require("express-fileupload");
 const filesPayloadExists = require("../middleware/fileUploadMD/filesPayloadExists");
 const fileExtLimiter = require("../middleware/fileUploadMD/fileExtLimiter");
 const fileSizeLimiter = require("../middleware/fileUploadMD/fileSizeLimiter");
-const multerController = require("../controllers/multer.controller");
+const uploadController = require("../controllers/upload.controller");
 
 // auth
 router.post("/register", authController.signUp);
@@ -26,7 +26,7 @@ router.put(
   filesPayloadExists,
   fileExtLimiter([".png", ".jpg", ".jpeg", ".gif"]),
   fileSizeLimiter(5), // MB
-  multerController.userPicture
+  uploadController.userPicture
 );
 
 module.exports = router;

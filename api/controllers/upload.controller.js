@@ -1,56 +1,97 @@
-const path = require("path");
 const UserModel = require("../models/user.model");
+const PostModel = require("../models/post.model");
 const ObjectID = require("mongoose").Types.ObjectId;
 
-module.exports.uploadProfil = (req, res) => {
-  const file = req.files.file; // req.files. + key
-  const userName = req.body.userName;
-  const userId = req.body.id;
-  console.log(file, userName, userId);
+const path = require("path");
+const { removeAccents } = require("../utils/noAccent");
 
-  if (!ObjectID.isValid(userId)) res.status(401).send("Id introuvable");
+const MIME_TYPES = {
+  "image/jpg": ".jpg",
+  "image/jpeg": ".jpg",
+  "image/gif": ".gif",
+  "image/png": ".png",
+};
 
-  // Object.keys(files).forEach((key) => {
-  //   const filepath = path.join(
-  //     __dirname,
-  //     "/../client/public/uploads/profil/",
-  //     // files[key].name
-  //     `${req.body.UserName.replaceAll(" ", "_")}.jpg` // pas clean switch checker le gformatl original et le remetre
-  //   );
-  //   // Object.keys(files).mv(filepath, (err) => {
-  //   if (err) return res.status(500).send({ status: "error", message: err });
-  // });
-  // });
-  try {
-    const filepath = path.join(
-      __dirname,
-      "/../client/public/uploads/profil/",
-      `${userName.replaceAll(" ", "_")}.jpg`
-    );
-    // Object.keys(files).mv(filepath, (err) => {
-    //   if (err) return res.status(500).send({ status: "error", message: err });
-    // });
-    file.mv(filepath, (err) => {
-      if (err) return res.status(500).send({ status: "error", message: err });
-    });
-    const picturePath = `./uploads/profil/${userName.replaceAll(" ", "_")}.jpg`;
-    console.log(picturePath);
-    UserModel.findByIdAndUpdate(
-      { _id: userId },
-      {
-        $set: {
-          picture: picturePath,
-        },
-      }
+module.exports.userPicture = async (req, res) => {
+  const image = req.files.image;
+  const userName = removeAccents(req.body.userName);
+  const uid = req.params.id;
+
+  if (!ObjectID.isValid(uid))
+    return res
+      .status(400)
+      .send("UserID unnkown : " + uid + " cannot upload user picture.");
+
+  const extension = MIME_TYPES[image.mimetype];
+  const userPictureName = `${userName.toLowerCase()}${extension}`;
+  const storagePath = path.join(
+    __dirname,
+    "../uploads/users_pictures",
+    userPictureName
+  );
+  image.mv(storagePath, (err) => {
+    if (err) return res.status(500).send({ status: "error", message: err });
+  });
+  console.log(storagePath);
+
+  await UserModel.findByIdAndUpdate(
+    { _id: uid },
+    { $set: { picture: `uploads/users_pictures/${userPictureName}` } }
+  )
+    .then((docs) =>
+      res.status(201).send({
+        status: "success",
+        message: `${image.name} have been uploaded successfuly !`,
+        data: docs,
+      })
     )
-      .then((docs) => res.status(200).send(docs))
-      .catch((err) => res.status(500).send({ message: err }));
-  } catch (err) {
-    return res.status(401).send("Error | Upload profil picture" + err);
-  }
+    .catch((err) =>
+      res.status(400).send({
+        status: "failed",
+        message: `User picture upload failed, ${err}`,
+      })
+    );
+};
 
-  // return res.json({
-  //   status: "sucess",
-  //   message: Object.keys(files).toString(),
-  // });
+module.exports.createPostPicture = async (req, res) => {
+  const image = req.files.image;
+  const posterId = req.body.posterId;
+
+  if (!ObjectID.isValid(posterId))
+    return res
+      .status(400)
+      .send("ID unknown : " + posterId + " cannot create post.");
+
+  const extension = MIME_TYPES[image.mimetype];
+  const postPictureName = `${posterId}_${Date.now()}${extension}`;
+  const storagePath = path.join(
+    __dirname,
+    "../uploads/posts_pictures",
+    postPictureName
+  );
+
+  image.mv(storagePath, (err) => {
+    if (err) return res.status(500).send({ status: "error", message: err });
+  });
+  const picturePath = `uploads/posts_pictures/${postPictureName}`;
+
+  const newPost = new PostModel({
+    posterId: posterId,
+    message: req.body.message,
+    picture: null,
+    video: req.body.video,
+    likers: [],
+    comments: [],
+  });
+
+  try {
+    const post = await newPost.save();
+    const postPicture = await PostModel.findOneAndUpdate(
+      { _id: post._id },
+      { $set: { picture: picturePath } }
+    );
+    return res.status(201).send(postPicture);
+  } catch (err) {
+    return res.status(400).send(err);
+  }
 };

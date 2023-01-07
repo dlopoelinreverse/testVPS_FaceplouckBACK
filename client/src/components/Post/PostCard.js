@@ -23,14 +23,14 @@ const PostCard = ({ postId, postsData, type }) => {
 
   const handleTextEdit = () => {
     if (newTextMessage !== post.message) {
-      dispatch(updatePost(post._id, newTextMessage));
+      dispatch(updatePost(post, newTextMessage));
       setEditPost(false);
     } else setEditPost(false);
   };
 
   const handleDelete = () => {
     if (window.confirm("Voulez-vous supprimer ce post ?")) {
-      dispatch(deletePost(post._id));
+      dispatch(deletePost(post));
     }
   };
 

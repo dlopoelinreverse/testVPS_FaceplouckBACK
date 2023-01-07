@@ -1,4 +1,11 @@
-import { CREATE_POST, LIKE_POST } from "../actions/posts.actions";
+import {
+  CREATE_POST,
+  CREATE_POST_PICTURE,
+  DELETE_POST,
+  LIKE_POST,
+  UNLIKE_POST,
+  UPDATE_POST,
+} from "../actions/posts.actions";
 import { GET_USER_POSTS } from "../actions/profils.actions";
 
 const initialState = { profilsPosts: [], profilsData: [] };
@@ -30,31 +37,105 @@ export default function postsReducer(state = initialState, action) {
     case CREATE_POST:
       return {
         ...state,
-        profilPosts: state.profilsPosts.map((profilPosts) => {
+        profilsPosts: state.profilsPosts.map((profilPosts) => {
           if (profilPosts.userId === action.payload.posterId) {
             if (!profilPosts.posts.includes(action.payload)) {
-              return [...state.profilsPosts, action.payload];
-            } else return state.profilsPosts;
+              return {
+                ...profilPosts,
+                posts: [action.payload, ...profilPosts.posts],
+              };
+            } else return profilPosts;
           } else return profilPosts;
         }),
       };
-    // case LIKE_POST:
-    //   console.log(action.payload.posterId);
-    //   return {
-    //     ...state,
-    //     profilsPosts: state.profilsPosts.map((profilPost) => {
-    //       if (profilPost.userId === action.payload.posterId) {
-    //         profilPost.posts.map((post) => {
-    //           if (post._id === action.payload.postId) {
-    //             return {
-    //               ...post,
-    //               likers: [action.payload.userId, ...post.likers],
-    //             };
-    //           } else return post;
-    //         });
-    //       } else return profilPost;
-    //     }),
-    //   };
+    case CREATE_POST_PICTURE:
+      return {
+        ...state,
+        profilsPosts: state.profilsPosts.map((profilPosts) => {
+          if (profilPosts.userId === action.payload.posterId) {
+            if (!profilPosts.posts.includes(action.payload)) {
+              return {
+                ...profilPosts,
+                posts: [action.payload, ...profilPosts.posts],
+              };
+            } else return profilPosts;
+          } else return profilPosts;
+        }),
+      };
+    case LIKE_POST:
+      return {
+        ...state,
+        profilsPosts: state.profilsPosts.map((profilPosts) => {
+          if (profilPosts.userId === action.payload.posterId) {
+            return {
+              ...profilPosts,
+              posts: profilPosts.posts.map((post) => {
+                if (post._id === action.payload.postId) {
+                  return {
+                    ...post,
+                    likers: [action.payload.userId, ...post.likers],
+                  };
+                } else return post;
+              }),
+            };
+          } else return profilPosts;
+        }),
+      };
+    case UNLIKE_POST:
+      return {
+        ...state,
+        profilsPosts: state.profilsPosts.map((profilPosts) => {
+          if (profilPosts.userId === action.payload.posterId) {
+            return {
+              ...profilPosts,
+              posts: profilPosts.posts.map((post) => {
+                if (post._id === action.payload.postId) {
+                  return {
+                    ...post,
+                    likers: post.likers.filter(
+                      (likers) => likers !== action.payload.userId
+                    ),
+                  };
+                } else return post;
+              }),
+            };
+          } else return profilPosts;
+        }),
+      };
+    case UPDATE_POST:
+      return {
+        ...state,
+        profilsPosts: state.profilsPosts.map((profilPosts) => {
+          if (profilPosts.userId === action.payload.post.posterId) {
+            return {
+              ...profilPosts,
+              posts: profilPosts.posts.map((post) => {
+                if (post._id === action.payload.post._id) {
+                  return {
+                    ...post,
+                    message: action.payload.message,
+                  };
+                } else return post;
+              }),
+            };
+          } else return profilPosts;
+        }),
+      };
+    case DELETE_POST:
+      console.log(action.payload.post);
+      return {
+        ...state,
+        profilsPosts: state.profilsPosts.map((profilPosts) => {
+          if (profilPosts.userId === action.payload.post.posterId) {
+            return {
+              ...profilPosts,
+              posts: profilPosts.posts.filter(
+                (post) => post._id !== action.payload.post._id
+              ),
+            };
+          } else return profilPosts;
+        }),
+      };
 
     default:
       return state;
