@@ -17,6 +17,9 @@ const Home = () => {
 
         <Feed />
       </div>
+      <div className="main-right-part">
+        <p>right part</p>
+      </div>
     </div>
   );
 };

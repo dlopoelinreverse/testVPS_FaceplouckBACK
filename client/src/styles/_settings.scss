@@ -74,11 +74,29 @@
  .app {
    
    .page {
+      display: flex;
      overflow-x: hidden;
-     padding-bottom: 70px;
-     border-left: 3px solid $color-4;
-     border-right: 3px solid $color-4;
+    //  padding-bottom: 70px;
+    
 
+    
+    .main-right-part {
+      visibility: visible;
+    }
+    @media (max-width: 425px){
+      display: block;
+      .main-right-part {
+        visibility: collapse;
+      }
+    }
+    @media (max-width: 768px){
+      display: block;
+      .main-right-part {
+        visibility: collapse;
+      }
+    }
+    // @media (max-width: 426px) {
+    // }
     
     @media (min-width: 768px){
       width: 80%;

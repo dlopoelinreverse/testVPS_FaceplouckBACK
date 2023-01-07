@@ -3,7 +3,32 @@
 @import "../components/showPostComments";
 
 .main{
-  margin: 0 auto;
+  // width: 70%;
+  // margin: 0 auto;
+  border-left: 3px solid $color-4;
+  border-right: 3px solid $color-4;
+  padding-bottom: 70px;
+
+  @media (min-width: 425px){
+    width: 100%;
+    // margin: 0 auto;
+  }
+  @media (min-width: 768px){
+    width: 90%;
+    margin: 0 auto;
+  }
+  @media (min-width: 1024px){
+    width: 80%;
+    // margin: 0 auto;
+  }
+  @media (min-width: 1440px){
+    width: 70%;
+    // margin: 0 auto;
+  }
+  @media (min-width: 2000px){
+    width: 70%;
+    // margin: 0 auto;
+  }
 
 
   

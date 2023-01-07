@@ -1,8 +1,12 @@
  .profil{
     height: 100%;
+    
      .profil-container {
          height: 100%;
          margin: 0 auto;
+         border-left: 3px solid $color-4;
+         border-right: 3px solid $color-4;
+         padding-bottom: 70px;
 
          .profil-header {
           padding: 30px 30px;

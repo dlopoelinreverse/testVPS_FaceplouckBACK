@@ -15,16 +15,21 @@ const PostCommentPage = () => {
   }, [postId]);
   return (
     <div className="post-comment page">
-      <div className="hearder-button">
-        <Link to="/">
-          <span className="icon-btn">
-            <img src="/img/icons/chevron-left-solid.svg" alt="" />
-          </span>
-        </Link>
+      <div className="main">
+        <div className="hearder-button">
+          <Link to="/">
+            <span className="icon-btn">
+              <img src="/img/icons/chevron-left-solid.svg" alt="" />
+            </span>
+          </Link>
+        </div>
+        {!isEmpty(postsData) && postId && (
+          <PostComments postId={postId} postsData={postsData} />
+        )}
       </div>
-      {!isEmpty(postsData) && postId && (
-        <PostComments postId={postId} postsData={postsData} />
-      )}
+      <div className="main-right-part">
+        <p>Right part</p>
+      </div>
     </div>
   );
 };
