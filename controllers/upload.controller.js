@@ -26,7 +26,7 @@ module.exports.userPicture = async (req, res) => {
   const userPictureName = `${userName.toLowerCase()}${extension}`;
   const storagePath = path.join(
     __dirname,
-    "../../faceplouck_front/uploads/users_pictures",
+    "../../faceplouckCLIENT/uploads/users_pictures",
     userPictureName
   );
   image.mv(storagePath, (err) => {
@@ -68,7 +68,7 @@ module.exports.createPostPicture = async (req, res) => {
   const postPictureName = `${posterId}_${Date.now()}${extension}`;
   const storagePath = path.join(
     __dirname,
-    "../../public/uploads/posts_pictures",
+    "../../faceplouckCLIENT/uploads/posts_pictures",
     postPictureName
   );
   console.log("Path dir, ", storagePath);
