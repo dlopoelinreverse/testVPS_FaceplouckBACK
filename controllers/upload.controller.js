@@ -36,7 +36,7 @@ module.exports.userPicture = async (req, res) => {
 
   await UserModel.findByIdAndUpdate(
     { _id: uid },
-    { $set: { picture: `uploads/users_pictures/${userPictureName}` } }
+    { $set: { picture: `/uploads/users_pictures/${userPictureName}` } }
   )
     .then((docs) => {
       console.log(docs);
@@ -76,7 +76,7 @@ module.exports.createPostPicture = async (req, res) => {
   image.mv(storagePath, (err) => {
     if (err) return res.status(500).send({ status: "error", message: err });
   });
-  const picturePath = `uploads/posts_pictures/${postPictureName}`;
+  const picturePath = `/uploads/posts_pictures/${postPictureName}`;
 
   const newPost = new PostModel({
     posterId: posterId,
