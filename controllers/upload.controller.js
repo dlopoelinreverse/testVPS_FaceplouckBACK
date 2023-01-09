@@ -68,7 +68,7 @@ module.exports.createPostPicture = async (req, res) => {
   const postPictureName = `${posterId}_${Date.now()}${extension}`;
   const storagePath = path.join(
     __dirname,
-    "../../public/uploads/posts_pictures",
+    "../../faceplouck_front/uploads/posts_pictures",
     postPictureName
   );
 
@@ -92,8 +92,10 @@ module.exports.createPostPicture = async (req, res) => {
       { _id: post._id },
       { $set: { picture: picturePath } }
     );
+    console.log(postPicture);
     return res.status(201).send(postPicture);
   } catch (err) {
+    console.log(err);
     return res.status(400).send(err);
   }
 };
