@@ -71,6 +71,7 @@ module.exports.createPostPicture = async (req, res) => {
     "../../public/uploads/posts_pictures",
     postPictureName
   );
+  console.log("Path dir, ", storagePath);
 
   image.mv(storagePath, (err) => {
     if (err) return res.status(500).send({ status: "error", message: err });
