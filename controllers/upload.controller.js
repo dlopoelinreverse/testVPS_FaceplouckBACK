@@ -26,7 +26,7 @@ module.exports.userPicture = async (req, res) => {
   const userPictureName = `${userName.toLowerCase()}${extension}`;
   const storagePath = path.join(
     __dirname,
-    "../../faceplouckCLIENT/uploads/users_pictures",
+    "../../../var/www/faceplouckCLIENT/uploads/users_pictures",
     userPictureName
   );
   image.mv(storagePath, (err) => {
