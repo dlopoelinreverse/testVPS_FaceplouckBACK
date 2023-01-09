@@ -38,19 +38,21 @@ module.exports.userPicture = async (req, res) => {
     { _id: uid },
     { $set: { picture: `uploads/users_pictures/${userPictureName}` } }
   )
-    .then((docs) =>
-      res.status(201).send({
+    .then((docs) => {
+      console.log(docs);
+      return res.status(201).send({
         status: "success",
         message: `${image.name} have been uploaded successfuly !`,
         data: docs,
-      })
-    )
-    .catch((err) =>
-      res.status(400).send({
+      });
+    })
+    .catch((err) => {
+      console.log();
+      return res.status(400).send({
         status: "failed",
         message: `User picture upload failed, ${err}`,
-      })
-    );
+      });
+    });
 };
 
 module.exports.createPostPicture = async (req, res) => {
