@@ -68,7 +68,7 @@ module.exports.createPostPicture = async (req, res) => {
   const postPictureName = `${posterId}_${Date.now()}${extension}`;
   const storagePath = path.join(
     __dirname,
-    "../../faceplouckCLIENT/uploads/posts_pictures",
+    "../../../var/www/faceplouckCLIENT/uploads/posts_pictures",
     postPictureName
   );
   console.log("Path dir, ", storagePath);
