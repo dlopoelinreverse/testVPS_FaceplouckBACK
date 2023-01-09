@@ -26,7 +26,7 @@ module.exports.userPicture = async (req, res) => {
   const userPictureName = `${userName.toLowerCase()}${extension}`;
   const storagePath = path.join(
     __dirname,
-    "../uploads/users_pictures",
+    "../../public/uploads/users_pictures",
     userPictureName
   );
   image.mv(storagePath, (err) => {
@@ -66,7 +66,7 @@ module.exports.createPostPicture = async (req, res) => {
   const postPictureName = `${posterId}_${Date.now()}${extension}`;
   const storagePath = path.join(
     __dirname,
-    "../uploads/posts_pictures",
+    "../../public/uploads/posts_pictures",
     postPictureName
   );
 

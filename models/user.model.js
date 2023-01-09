@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { isEmail, isStrongPassword } = require("validator");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema(
   {
@@ -29,7 +30,7 @@ const userSchema = new mongoose.Schema(
     },
     picture: {
       type: String,
-      default: "./uploads/profil/random-user.png",
+      default: "./uploads/users_pictures/random-user.png",
     },
     bio: {
       type: String,
@@ -48,6 +49,14 @@ const userSchema = new mongoose.Schema(
       type: [String],
       required: true,
     },
+    // authToken: [
+    //   {
+    //     authToken: {
+    //       type: String,
+    //       required: true,
+    //     },
+    //   },
+    // ],
   },
   {
     timestamps: true,
@@ -60,6 +69,18 @@ userSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
+
+//JWT
+// userSchema.methods.generateAuthTokenAndSaveUser = async function () {
+//   const authToken = jwt.sign(
+//     { _id: this._id.toString() },
+//     process.env.TOKEN_SECRET,
+//     { expiresIn: "1h" }
+//   );
+//   this.authToken.push({ authToken });
+//   await this.save();
+//   return authToken;
+// };
 
 userSchema.statics.login = async function (email, password) {
   const user = await this.findOne({ email });

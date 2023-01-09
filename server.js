@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const userRoutes = require("./routes/user.routes");
 const postRoutes = require("./routes/post.routes");
-const uploadTestRoutes = require("./routes/uploadTest.routes");
 const conversationRoutes = require("./routes/conversation.routes");
 require("dotenv").config({ path: "./config/.env" });
 require("./config/db");
@@ -42,7 +41,6 @@ app.get("/api/jwtid", requireAuth, (req, res) => {
 app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/conversation", conversationRoutes);
-app.use("api/uploadTest", uploadTestRoutes);
 
 // server ( à la toute fin)
 app.listen(8800, () => {
