@@ -54,7 +54,7 @@ module.exports.userPicture = async (req, res) => {
       });
     });
 };
-
+//
 module.exports.createPostPicture = async (req, res) => {
   const image = req.files.image;
   const posterId = req.body.posterId;
