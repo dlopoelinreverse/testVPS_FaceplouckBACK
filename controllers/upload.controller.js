@@ -81,7 +81,7 @@ module.exports.createPostPicture = async (req, res) => {
   const newPost = new PostModel({
     posterId: posterId,
     message: req.body.message,
-    picture: null,
+    picture: picturePath,
     video: req.body.video,
     likers: [],
     comments: [],
@@ -89,12 +89,14 @@ module.exports.createPostPicture = async (req, res) => {
 
   try {
     const post = await newPost.save();
-    const postPicture = await PostModel.findOneAndUpdate(
-      { _id: post._id },
-      { $set: { picture: picturePath } }
-    );
-    console.log(postPicture);
-    return res.status(201).send(postPicture);
+    // const postPicture = await PostModel.findOneAndUpdate(
+    //   { _id: post._id },
+    //   { $set: { picture: picturePath } }
+    // );
+    console.log(post);
+    return res.status(201).send(post);
+    // console.log(postPicture);
+    // return res.status(201).send(postPicture);
   } catch (err) {
     console.log(err);
     return res.status(400).send(err);
