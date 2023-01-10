@@ -85,7 +85,7 @@ module.exports.createPost = async (req, res) => {
       picture: file
         ? `${req.protocol}://${req.get(
             "host"
-          )}/uploads/posts_pictures/${newFileName}`
+          )}uploads/posts_pictures/${newFileName}`
         : null,
       video: video,
       likers: [],
