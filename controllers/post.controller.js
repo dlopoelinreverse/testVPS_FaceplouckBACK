@@ -63,6 +63,7 @@ module.exports.createPost = async (req, res) => {
   const { posterId } = req.body;
   const { message } = req.body;
   const { video } = req.body;
+  console.log(file, posterId);
   if (!ObjectID.isValid(posterId))
     return res
       .status(400)

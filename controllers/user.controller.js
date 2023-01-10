@@ -28,6 +28,7 @@ module.exports.getUserInfo = (req, res) => {
 };
 
 module.exports.updateUser = async (req, res) => {
+  console.log(req.file, req.body);
   const file = req.file;
   const { newPseudo } = req.body;
   const { newBio } = req.body;
