@@ -57,9 +57,7 @@ module.exports.updateUser = async (req, res) => {
           $set: {
             pseudo: newPseudo,
             bio: newBio,
-            picture: `${req.protocol}://${req.get(
-              "host"
-            )}/api/uploads/users_pictures/${newFileName}`,
+            picture: `${process.env.DOMAIN}/api/uploads/users_pictures/${newFileName}`,
           },
         },
         { new: true, upsert: true, setDefaultsOnInsert: true }
