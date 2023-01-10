@@ -1,6 +1,15 @@
 const PostModel = require("../models/post.model");
 const UserModel = require("../models/user.model");
 const ObjectID = require("mongoose").Types.ObjectId;
+const path = require("path");
+const fs = require("fs");
+
+const MIME_TYPES = {
+  "image/jpg": "jpg",
+  "image/jpeg": "jpg",
+  "image/png": "png",
+  "image/gif": "gif",
+};
 
 module.exports.getAllPosts = (req, res) => {
   PostModel.find((err, docs) => {
@@ -50,61 +59,45 @@ module.exports.getUserPosts = async (req, res) => {
 };
 
 module.exports.createPost = async (req, res) => {
-  if (!ObjectID.isValid(req.body.posterId))
+  const file = req.file;
+  const { posterId } = req.body;
+  const { message } = req.body;
+  const { video } = req.body;
+  if (!ObjectID.isValid(posterId))
     return res
       .status(400)
-      .send("ID unknown : " + req.body.posterId + " cannot create post.");
+      .send("ID unknown : " + posterId + " cannot create post.");
 
-  const newPost = new PostModel({
-    posterId: req.body.posterId,
-    message: req.body.message,
-    video: req.body.video,
-    likers: [],
-    comments: [],
-  });
   try {
+    let newFileName;
+    if (file) {
+      newFileName = `${posterId}_${Date.now()}.${MIME_TYPES[file.mimetype]}`;
+
+      const filePath = path.join(file.path);
+      const newPath = path.join("uploads/posts_pictures/", newFileName);
+      fs.rename(filePath, newPath, (err) => {
+        if (err) console.log(err);
+      });
+    }
+    const newPost = new PostModel({
+      posterId: posterId,
+      message: message,
+      picture: file
+        ? `${req.protocol}://${req.get(
+            "host"
+          )}/uploads/posts_pictures/${newFileName}`
+        : null,
+      video: video,
+      likers: [],
+      comments: [],
+    });
+
     const post = await newPost.save();
     return res.status(201).send(post);
   } catch (err) {
     return res.status(400).send(err);
   }
 };
-
-// module.exports.createPostPicture = async (req, res) => {
-//   const file = req.files.file;
-//   console.log(req.files);
-
-//   console.log(req.body);
-//   if (!ObjectID.isValid(req.body.posterId))
-//     return res
-//       .status(400)
-//       .send("ID unknown : " + req.body.posterId + " cannot create post.");
-//   const filepath = path.join(
-//     __dirname,
-//     "/../client/public/uploads/posts/",
-//     `${req.body.posterId + Date.now()}.jpg`
-//   );
-
-//   file.mv(filepath, (err) => {
-//     if (err) return res.status(500).send({ status: "error", message: err });
-//   });
-//   const picturePath = `./uploads/posts/${req.body.posterId + Date.now()}.jpg`;
-
-//   const newPost = new PostModel({
-//     posterId: req.body.posterId,
-//     message: req.body.message,
-//     picture: picturePath,
-//     video: req.body.video,
-//     likers: [],
-//     comments: [],
-//   });
-//   try {
-//     const post = await newPost.save();
-//     return res.status(201).send(post);
-//   } catch (err) {
-//     return res.status(400).send(err);
-//   }
-// };
 
 module.exports.updatePost = (req, res) => {
   if (!ObjectID.isValid(req.params.id))

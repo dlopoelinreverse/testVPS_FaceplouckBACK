@@ -13,7 +13,9 @@ const MIME_TYPES = {
 };
 
 module.exports.userPicture = async (req, res) => {
-  const image = req.files.image;
+  // const image = req.files.image;
+  const image = req.file;
+  console.log(image);
   const userName = removeAccents(req.body.userName);
   const uid = req.params.id;
 

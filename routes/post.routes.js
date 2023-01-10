@@ -1,24 +1,11 @@
 const router = require("express").Router();
 const postController = require("../controllers/post.controller");
-
-const fileUpload = require("express-fileupload");
-const filesPayloadExists = require("../middleware/fileUploadMD/filesPayloadExists");
-const fileExtLimiter = require("../middleware/fileUploadMD/fileExtLimiter");
-const fileSizeLimiter = require("../middleware/fileUploadMD/fileSizeLimiter");
-const uploadController = require("../controllers/upload.controller");
+const multer = require("../middleware/multer.middleware");
 
 router.get("/", postController.getAllPosts);
 router.get("/:postId", postController.getPost);
 router.get("/userPosts/:posterId", postController.getUserPosts);
-router.post("/", postController.createPost);
-router.post(
-  "/picture",
-  fileUpload({ createParentPath: true }),
-  filesPayloadExists,
-  fileExtLimiter([".png", ".jpg", ".jpeg", ".gif"]),
-  fileSizeLimiter(5), // MB
-  uploadController.createPostPicture
-);
+router.post("/", multer, postController.createPost);
 
 router.put("/:id", postController.updatePost);
 router.delete("/:id", postController.deletePost);
