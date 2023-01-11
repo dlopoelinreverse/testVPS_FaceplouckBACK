@@ -18,9 +18,7 @@ module.exports.signUp = async (req, res) => {
       pseudo,
       email,
       password,
-      picture: `${req.protocol}://${req.get(
-        "host"
-      )}/uploads/users_pictures/random-user.png`,
+      picture: `${process.env.DOMAIN}/api/uploads/users_pictures/random-user.png`,
     });
     const token = createToken(user._id);
     res.cookie("jwt", token, { httpOnly: true, maxAge });
@@ -37,8 +35,6 @@ module.exports.signIn = async (req, res) => {
 
   try {
     const user = await UserModel.login(email, password);
-
-    console.log(email, password);
 
     const token = createToken(user._id);
     res.cookie("jwt", token, { httpOnly: true, maxAge });
