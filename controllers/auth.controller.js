@@ -22,8 +22,10 @@ module.exports.signUp = async (req, res) => {
         "host"
       )}/uploads/users_pictures/random-user.png`,
     });
-
-    res.status(201).json({ user: user._id });
+    const token = createToken(user._id);
+    res.cookie("jwt", token, { httpOnly: true, maxAge });
+    res.status(200).send({ user: user._id });
+    // res.status(201).json({ user: user._id });
   } catch (err) {
     const errors = signUpErrors(err);
     res.status(200).send({ errors });
